@@ -1,0 +1,150 @@
+body {
+	padding: 0px;
+	font-family: 'Exo 2', sans-serif;
+	margin: 0px;
+	color: #7D7D7D;
+	background: #DDDDDD;
+	font-size:11px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: Verdana, Geneva, sans-serif;
+}
+/* begins Login widgets  */
+ .png{
+	 max-width:100px;
+	  display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+.login-widget {
+	margin-top: 20px;
+	padding:1.5%;
+	background: #f7f7f7;
+	border-radius: 0;
+	-webkit-box-shadow: 1px 1px 5px 1px #DDDDDD;
+    box-shadow: 1px 1px 5px 1px #DDDDDD;
+	max-width: 450px;
+	margin: 0 auto;
+	padding: 25px;
+}
+.signup-link a{
+	color:#1557a1ce;
+}
+
+.login-widget .element {
+	width: auto;
+	height: auto;
+	padding: 5px;
+	margin-bottom: 5px;
+}
+
+.login-widget input[type='text'], .login-widget input[type='password'] {
+	display: inline-block;
+	height: 43px;
+	width: 100%;
+	border: none;
+	border-radius: 0;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 0;
+	background-color: transparent;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	border-bottom: 1px solid #ccc;
+}
+
+.login-widget input[type='submit'] {
+	border: none;
+	padding:5px 0px 5px 0px;
+	width: 100%;
+	text-align: center;
+	color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+	font-size: 15px;
+	border-radius: 4px;
+	margin-top: 0px;
+}
+.login-widget input[type='submit']:hover {
+    color: #fff;
+    background-color: #286090;
+	border:none;
+}
+.login-widget a {
+	color: #3695D5;
+	text-decoration: none;
+}
+@media screen and (max-width: 800px) {
+    .login-widget {
+        width: 25%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .login-widget {
+        width: 25%;
+    }
+}
+@media screen and (max-width: 550px) {
+    .login-widget {
+        width: 25%;
+    }
+    .select-drop-down select {
+        width: 100% !important;
+    }
+}
+@media screen and (max-width: 420px) {
+    .login-widget {
+        width: 90%;
+    }
+}
+.signup-link .icon:before {
+    text-align: center;
+    font-size: 20px;
+    color: red;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+	content: "\f1a0";
+}
+.login-widget .icon:before {
+    text-align: center;
+    font-size: 60px;
+    color: #b6b6b6;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+	content: "\f2bd";
+	margin-left:135px;
+}
+.header-toggle .p1{
+	color:gray;
+	font-size:23px
+}
+.header-toggle .p2{
+	margin-top:-10px;
+	color:#000;
+	font-size:15px;
+	font-weight:600;
+}
+.header-toggle .bluex{
+	color:blue;
+	font-weight:bold;
+	
+}
+.header-toggle .red{
+	color:red;
+	font-weight:bold;
+}
+.header-toggle .yellow{
+	color:yellow;
+	font-weight:bold;
+}
+.header-toggle .green{
+	color:green;
+	font-weight:bold;
+}
+.login-widget .___invalidERROR{
+	color:#912d2d;
+	font-size:13px;
+	font-weight:600;	
+}
