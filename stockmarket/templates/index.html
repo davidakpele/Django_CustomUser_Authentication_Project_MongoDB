@@ -13,11 +13,16 @@
         <meta http-equiv="Content-Security-Policy" content="">
         <meta name="description" content="" />
         <meta name="fragment" content="!" />
+        <title>Dashboard | Default</title>
         <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css'%}">
-        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <h1>Profit/Loss Over Time</h1>
-
+    <h1>Welcome, {{ request.user.firstname  }}!</h1>
+    <p>Thank you for logging in.</p>
+    <a href="/logout" class="btn btn-danger">
+        <button type="button" class="btn btn-danger">Logout user</button> </a>
+</form>
 </body>
 </html>

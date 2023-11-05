@@ -10,13 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+from datetime import timedelta
 from pathlib import Path
 import os
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -28,7 +27,6 @@ SECRET_KEY = 'django-insecure-b0oj#bg4j(r4=vhut92o!qerdvx)7b1_cs@&!-x!mb2pa!-!v@
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -43,6 +41,9 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'djongo',
     'corsheaders',
+    'rest_framework',
+    'rest_framework_simplejwt',
+    'oauth2_provider'
 ]
 
 MIDDLEWARE = [
@@ -54,9 +55,36 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+    ),
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),  # Token expiration time
+    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=7),
+    'SLIDING_TOKEN_LIFETIME': timedelta(days=14),
+    'SLIDING_TOKEN_LIFETIME_REFRESH': timedelta(days=28),
+}
+# JWT settings
+import datetime
+JWT_AUTH = {
+    'JWT_ENCODE_HANDLER':
+    'rest_framework_jwt.utils.jwt_encode_handler',
+    'JWT_DECODE_HANDLER':
+    'rest_framework_jwt.utils.jwt_decode_handler',
+    'JWT_PAYLOAD_HANDLER':
+    'rest_framework_jwt.utils.jwt_payload_handler',
+    'JWT_REFRESH_HANDLER':
+    'rest_framework_jwt.utils.jwt_refresh_handler',
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=3600),  # Token expiration time
+    'JWT_ALLOW_REFRESH': True,
+    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
+}
 ROOT_URLCONF = 'stockmarket.urls'
 
 TEMPLATES = [
@@ -108,11 +136,6 @@ CORS_ALLOW_HEADERS = [
     "Content-Type",
 ]
 
-# Optional: Allow credentials (cookies, HTTP authentication)
-CORS_ALLOW_CREDENTIALS = True
-
-# Optional: Set CORS max age (the time in seconds for how long the results of a preflight request can be cached)
-CORS_PREFLIGHT_MAX_AGE = 86400  # 24 hours
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -161,3 +184,7 @@ AUTHENTICATION_BACKENDS = [
     'users.backend.CustomBackend'
 ]
 AUTH_MODEL_MODEL ="users.CustomUsers"
+
+# Optional: Allow credentials (cookies, HTTP authentication)
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_ALLOW_ALL= True

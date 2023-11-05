@@ -664,7 +664,6 @@
   --service-bg-2: #e7f2de;
 }
 body {
-  background-color: #1a1a1a;
   background-color: var(--body-bg);
   box-sizing: border-box;
   color: #e6e6e6;
@@ -683,7 +682,6 @@ body {
   height: auto;
 }
 .auth {
-  background-color: #141414;
   background-color: var(--header-bg);
   border-radius: 1.2rem;
   max-width: 100%;
@@ -704,7 +702,7 @@ body {
     text-decoration: none;
 }
 .login-form {
-  background: rgba(255, 255, 255, 0.671);
+  background: var(--alert-bg-dark);
   border-radius: 5px;
   border: 1px solid #fff;
   max-width: 540px;
@@ -957,7 +955,7 @@ body {
   display: none;
   color: red;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font-size: 10px;
+  font-size: 12px;
 }
 .base_error_msg_container{
   display: none;

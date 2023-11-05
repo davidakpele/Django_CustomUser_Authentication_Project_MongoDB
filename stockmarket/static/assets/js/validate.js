@@ -63,6 +63,9 @@ window.onload = function loadPassword() {
 
 
 $(document).ready(function () {
+    $('.alert__close').click(function (e) {
+        $('.base_error_msg_container').hide();
+    });
     $('.base_error_msg_container').hide();
     $(".loader").hide();
     $('#password_eye').click(function (e) {
