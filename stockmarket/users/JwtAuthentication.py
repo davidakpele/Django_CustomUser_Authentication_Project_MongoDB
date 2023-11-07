@@ -1,4 +1,5 @@
-import jwt, datetime
+from django.http import JsonResponse
+import jwt, datetime,json
 from rest_framework import exceptions
 
 def create_access_token(id, name):
@@ -13,15 +14,10 @@ def create_access_token(id, name):
 def decode_access_token(token):
     try:
         payload = jwt.decode(token, 'access_secret', algorithms='HS256')    
-       
         return payload['user_id']
-    except:
-        raise exceptions.AuthenticationFailed({
-                "status": 401,
-                "title": "Authentication Error",
-                "detail": "Something went wrong with authentication to your Skybase library.",
-                "code": "generic_authentication_error"
-            })
+    except jwt.InvalidTokenError:  # Handle JWT expiration error if needed
+        return False
+
     
 
 def create_refresh_token(id, name):
