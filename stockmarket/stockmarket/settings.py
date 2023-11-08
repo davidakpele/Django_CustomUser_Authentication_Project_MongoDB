@@ -62,6 +62,12 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
         'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
     ),
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ],
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+    ],
 }
 
 SIMPLE_JWT = {
@@ -155,6 +161,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK ={
+    'EXCEPTION_HANDLER': 'users.exceptions.status_code_handler'
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/

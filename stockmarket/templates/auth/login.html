@@ -31,39 +31,41 @@
                     <div class="sub_header mb-5">
                         <span class="auth__heading-sub-text">New on eGoTrade?<a href="/register" class="registerLink"> Sign up </a>here</span>
                     </div>
- 
-                    <div class="form-group">
-                        <label class="form-label">Username / Email</label>
-                        <input autocomplete='chrome-off' type="text" id="email" name="email" placeholder="Enter Email or Username" class="form-input" autocomplete="off" value="">
-                        <span class="emsg"></span>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Password</label>
-                        <div class="form-input-group">
-                            <input autocomplete='chrome-off' type="password" id="login_password_input" name="password" placeholder="Enter password" autocomplete="off" value="">
-                            <i id="login_password_eye" class="fa fa-eye-slash"></i>
+                    <form action="javacript:void(0)" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label class="form-label">Username / Email</label>
+                            <input autocomplete='chrome-off' type="text" id="email" name="email" placeholder="Enter Email or Username" class="form-input" autocomplete="off" value="">
+                            <span class="emsg"></span>
                         </div>
-                        <span class="pmsg"></span>
-                    </div>
-                    <div class="auth__footer">
-                        <button class="form-button active" id="loginButton" type="submit">
-                            <span class="loader"></span>
-                            <span class="text">Login</span>
-                        </button>
-                    </div>
-                    <div class="base_error_msg_container">
-                        <div class="alert__container alert--warning alert--dark" id="darkerror_resp">
-                            <div class="alert__icon-box">
-                                <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                        <div class="form-group">
+                            <label class="form-label">Password</label>
+                            <div class="form-input-group">
+                                <input autocomplete='chrome-off' type="password" id="login_password_input" name="password" placeholder="Enter password" autocomplete="off" value="">
+                                <i id="login_password_eye" class="fa fa-eye-slash"></i>
                             </div>
-                            <div class="alert__message"></div>
-                            <div class="alert__close-block">
-                                <span class="alert__close">
-                                    <i class="fa fa-times" aria-hidden="true"></i>
-                                </span>
+                            <span class="pmsg"></span>
+                        </div>
+                        <div class="auth__footer">
+                            <button class="form-button active" id="loginButton" type="submit">
+                                <span class="loader"></span>
+                                <span class="text">Login</span>
+                            </button>
+                        </div>
+                        <div class="base_error_msg_container">
+                            <div class="alert__container alert--warning alert--dark" id="darkerror_resp">
+                                <div class="alert__icon-box">
+                                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                                </div>
+                                <div class="alert__message"></div>
+                                <div class="alert__close-block">
+                                    <span class="alert__close">
+                                        <i class="fa fa-times" aria-hidden="true"></i>
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

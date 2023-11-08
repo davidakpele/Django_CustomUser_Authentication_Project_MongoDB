@@ -105,18 +105,12 @@ $(document).ready(function () {
         let pass = document.getElementById("password_input").value;
         let pass2 = document.getElementById("Confirmpassword").value;
         $(".pmsg").hide();
-        if (pass2 != "" || pass2 != null) {
-            if (pass != pass2) {
-                document.getElementById("registerButton").setAttribute("disabled", "disabled");
-                document.getElementById("registerButton").classList.remove('active');
-                document.getElementById("registerButton").classList.add('inactive');
-            } else {
-                document.getElementById("registerButton").removeAttribute("disabled");
-                document.getElementById("registerButton").classList.remove('inactive');
-                document.getElementById("registerButton").classList.add('active');
-            }
+        if (pass == "" || pass == null && pass2 == "" || pass2 == null) {
+            document.getElementById("registerButton").setAttribute("disabled", "disabled");
+            document.getElementById("registerButton").classList.remove('active');
+            document.getElementById("registerButton").classList.add('inactive');
         } else {
-            if (pass2 == pass) {
+            if (pass == pass2) {
                 document.getElementById("registerButton").removeAttribute("disabled");
                 document.getElementById("registerButton").classList.remove('inactive');
                 document.getElementById("registerButton").classList.add('active');
@@ -135,11 +129,16 @@ $(document).ready(function () {
             $(".pmsg").fadeIn().text("Please enter new password.*");
             return false;
         } else {
-        
-            if (pass2 == pass1) {
-                document.getElementById("registerButton").removeAttribute("disabled");
-                document.getElementById("registerButton").classList.remove('inactive');
-                document.getElementById("registerButton").classList.add('active');
+            if (pass1 != "" || pass1 != null) {
+                if (pass1 == pass2) {
+                    document.getElementById("registerButton").removeAttribute("disabled");
+                    document.getElementById("registerButton").classList.remove('inactive');
+                    document.getElementById("registerButton").classList.add('active');
+                } else {
+                    document.getElementById("registerButton").setAttribute("disabled", "disabled");
+                    document.getElementById("registerButton").classList.remove('active');
+                    document.getElementById("registerButton").classList.add('inactive');
+                }
             } else {
                 document.getElementById("registerButton").setAttribute("disabled", "disabled");
                 document.getElementById("registerButton").classList.remove('active');
@@ -186,6 +185,11 @@ $(document).ready(function () {
             $("input#Confirmpassword").focus();
             return false;
         }
+        $(".emsg").hide()
+        $('.base_error_msg_container').hide();
+        // $(".loader").show();
+        $(".loader").css("display", "inline-block");
+        $(".text").text("Processing...");
         const data = { "firstname":__firstname, "lastname":__lastname, "email": __email, "password": __password,"confirmpassword":__confirmpassword };
         $.ajax({
             type: 'POST', // define the type of HTTP verb we want to use (POST for our form)
@@ -209,6 +213,8 @@ $(document).ready(function () {
         }).fail((xhr, error) => {
             var catch_error = xhr.responseJSON
             if (catch_error.status == 409) {
+                $(".loader").css("display", "none");
+                $(".text").text("Sign Up");
                 $('.emsg').empty();
                 $('.emsg').show().text(catch_error.error);
                 $('.base_error_msg_container').show();
@@ -218,9 +224,13 @@ $(document).ready(function () {
             } else if (catch_error.status == 406) {
                 $('.cmsg').empty();
                 $('.cmsg').show().text(catch_error.error);
+                $(".loader").css("display", "none");
+                $(".text").text("Sign Up");
             }else if (catch_error.status == 403 || catch_error.status == 405) {
                 $('.base_error_msg_container').show();
                 $('.alert__message').show().text(catch_error.error);
+                $(".loader").css("display", "none");
+                $(".text").text("Sign Up");
             }
         });
     });
