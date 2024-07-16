@@ -1,7 +1,7 @@
 # models.py
 from django.http import HttpResponse
 from django.contrib.auth import get_user_model
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractUser, BaseUserManager, PermissionsMixin
 from django.db import models
 
 # Create your model here
@@ -25,7 +25,7 @@ def create_superuser(self, email, firstname, lastname, password=None):
         return user
 
 
-class CustomUsers(AbstractBaseUser):
+class CustomUsers(AbstractUser, PermissionsMixin):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     firstname = models.CharField(max_length=100, blank=True) 
     lastname = models.CharField(max_length=100, blank=True)
@@ -35,10 +35,14 @@ class CustomUsers(AbstractBaseUser):
     is_admin = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
+     # Add related_name to avoid clashes
+    groups = models.ManyToManyField('auth.Group', related_name='custom_users')
+    user_permissions = models.ManyToManyField('auth.Permission', related_name='custom_users')
+
     objects = CustomUserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['firstname', 'lastname']
     
     def __str__(self):
         return self.firstname
