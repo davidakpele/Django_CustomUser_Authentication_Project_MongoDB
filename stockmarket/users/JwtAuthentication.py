@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from rest_framework import exceptions
-import jwt, datetime,json
+import jwt, datetime, json
 
 
 def create_access_token(id, name):

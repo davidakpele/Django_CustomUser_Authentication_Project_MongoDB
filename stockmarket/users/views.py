@@ -115,17 +115,20 @@ class LoginView(APIView):
         except json.JSONDecodeError:
             return JsonResponse({'error': 'Invalid JSON data', 'status': 400})    
 
-@login_required(login_url='login')
+@login_required(login_url = 'login')
 def index(request):
     return render(request, 'index.html')
 
 def check_authorization_bearer(request):
     authorization_header = request.META.get('HTTP_AUTHORIZATION')
+    
     if authorization_header:
         auth_parts = authorization_header.split()
+        
         if len(auth_parts) == 2 and auth_parts[0].lower() == 'bearer':
             token = auth_parts[1]
             id = decode_access_token(token)
+            
             if id is False:
                 return JsonResponse({"detail": "Given token not valid for any token type", "code": "token_not_valid", "messages":[{"token_class": "AccessToken",  "token_type": "access", "message": "Token is invalid or expired"}]})
             else:
@@ -148,6 +151,7 @@ def UserAPIView(request):
 
 def renderRegister_view(request):
     # Your view logic can go here
+    
     if 'lastname' in request.session and 'firstname' in request.session:
         # Both session variables are set, so redirect to the dashboard
         return redirect('/')
@@ -167,6 +171,7 @@ def authenticate_users_registration(request):
     if request.method == 'POST':
         data = json.loads(request.body)
         email = data.get('email')
+        
         try:
             user =  CustomUsers.objects.filter(email=email).first()
             if user is not None:
@@ -193,6 +198,7 @@ def authenticate_users_registration(request):
 def logout_view(request):
     logout(request) 
     response = Response()
+    
     for key in request.COOKIES:
         response.delete_cookie(key)
       # Set the desired HTTP status code in the response
