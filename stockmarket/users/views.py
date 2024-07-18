@@ -24,7 +24,6 @@ from .models import CustomUsers
 from datetime import datetime
 import requests, json, jwt, os
 
-
 jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
 jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 
@@ -55,7 +54,6 @@ class RefreshAPIView(APIView):
 
                     access_token = create_access_token(id, name)
                     refresh_token = create_refresh_token(id, name)
-                        
                     response = Response()
 
                     response.data = {

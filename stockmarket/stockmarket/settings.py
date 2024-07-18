@@ -31,19 +31,22 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'djongo',
+    'corsheaders',
+    'rest_framework',
+    'rest_framework_simplejwt',
+    'oauth2_provider',
+    'brands.apps.BrandsConfig',
+    'users.apps.UsersConfig',
+    'products.apps.ProductsConfig',
+    'categoreis.apps.CategoreisConfig',
+    'main.apps.MainConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main.apps.MainConfig',
-    'users.apps.UsersConfig',
-    'djongo',
-    'corsheaders',
-    'rest_framework',
-    'rest_framework_simplejwt',
-    'oauth2_provider'
 ]
 
 MIDDLEWARE = [

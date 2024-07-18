@@ -1,6 +1,6 @@
-django
-djangorestframework
-rest_framework
-pyyaml
+djongo
 requests
 django-cors-headers
+djangorestframework
+rest_framework_simplejwt
+oauth2_provider

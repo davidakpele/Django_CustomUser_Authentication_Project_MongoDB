@@ -12,17 +12,18 @@ class CustomUserManager(BaseUserManager):
     def create_user(self, email, firstname, lastname, password=None):
         if not email:
             raise ValueError('The Email field must be set')
+        
         email = self.normalize_email(email)
-        user = self.model(email=email, firstname=firstname, lastname=lastname)
+        user = self.model(email=email, firstname = firstname, lastname = lastname)
         user.set_password(password)
-        user.save(using=self._db)
+        user.save(using = self._db)
         return user
     
 def create_superuser(self, email, firstname, lastname, password=None):
-        user = self.create_user(email, firstname, lastname, password)
-        user.is_admin = True
-        user.save(using=self._db)
-        return user
+    user = self.create_user(email, firstname, lastname, password)
+    user.is_admin = True
+    user.save(using = self._db)
+    return user
 
 
 class CustomUsers(AbstractUser, PermissionsMixin):
@@ -35,7 +36,7 @@ class CustomUsers(AbstractUser, PermissionsMixin):
     is_admin = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
-     # Add related_name to avoid clashes
+    # Add related_name to avoid clashes
     groups = models.ManyToManyField('auth.Group', related_name='custom_users')
     user_permissions = models.ManyToManyField('auth.Permission', related_name='custom_users')
 
